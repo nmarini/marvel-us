@@ -8,7 +8,9 @@ class ComicContainer extends Component {
 
     render() {
         return (
-            <></>
+            <>
+                ComicContainer
+            </>
         )
     }
 
