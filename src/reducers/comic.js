@@ -1,4 +1,4 @@
-const ComicsReducer = (state = null, action) => {
+const Comics = (state = null, action) => {
     switch (action.type) {
         case 'ADD_COMICS':
             return action.comics
@@ -7,4 +7,4 @@ const ComicsReducer = (state = null, action) => {
     }
 }
 
-export default ComicsReducer
+export default Comics
