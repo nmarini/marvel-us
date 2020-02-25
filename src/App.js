@@ -12,7 +12,7 @@ class App extends Component {
           <p>
             {/* First Introduction of Application */}
             <h1>Marvel Us</h1>
-            <em>Bringing the Marvel Comics' Library to Your Device</em>
+            <em>Bringing Marvel Comics to You, Me, and Everyone We Know</em>
           </p>
 
         </div>
