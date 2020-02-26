@@ -19,15 +19,14 @@ class App extends Component {
 
   handleButton = () => {
     this.setState({
-      exposeComics: !this.exposeComics
+      exposeComics: !this.state.exposeComics
     })
   }
 
   comicsList = () => (
-    // this.props.comics.map(comic => (
-    //   <li key={comic.id}>{comic.title}</li>
-    // ))
-    console.log(this.props)
+    this.props.comics.map(comic => (
+      <li key={comic.id}>{comic.title}</li>
+    ))
   )
 
   render() {
@@ -41,8 +40,8 @@ class App extends Component {
             <em>Bringing Marvel Comics to You, Me, and Everyone We Know</em>
           </div>
           <div>
-            <button onClick={this.handleButton}>{this.exposeComics ? `Hide` : `Reveal`} Comics</button>
-            {this.exposeComics ? this.comicsList() : null }
+            <button onClick={this.handleButton}>{this.state.exposeComics ? `Hide` : `Reveal`} Comics</button>
+            {this.state.exposeComics && this.props.comics ? <ol>{this.comicsList()}</ol> : null }
           </div>
 
         </div>

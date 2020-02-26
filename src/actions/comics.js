@@ -18,19 +18,26 @@ export const saveComic = (currentUser, comic) => {
 // asynchronous action creators
 export const getComics = () => {
 
-    // let api_key = `${process.env.REACT_APP_API_KEY}`;
-    let resource_url = `https://gateway.marvel.com:443/v1/public/comics?apikey=ade62a41fa2b334dd5437904642782c9`
+    let md5 = require('md5');
+    let ts = Date.now;
+    let private_key = `${process.env.REACT_APP_API_PRIVATE_KEY}`;
+    let api_key = `${process.env.REACT_APP_API_KEY}`;
+    const hash = md5(ts + private_key + api_key)
+
+
+    
+    let resource_url = `https://gateway.marvel.com:443/v1/public/comics?limit=100&ts=${ts}&apikey=ade62a41fa2b334dd5437904642782c9&hash=${hash}` 
 
     return dispatch => {
         return fetch(resource_url)
             .then(res => res.json())
-            .then(comics => {
-                console.log(comics)
-                // if (resp.error) {
-                //     alert(resp.errors)
-                // } else {
-                //     dispatch(addComics(resp.data))
-                // }
+            .then(resp => {
+                const comics = resp.data.results;
+                if (resp.error) {
+                    alert(resp.errors)
+                } else {
+                    dispatch(addComics(comics))
+                }
             }
             )
     }
