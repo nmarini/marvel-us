@@ -15,6 +15,13 @@ export const saveComic = (currentUser, comic) => {
     }
 };
 
+export const addFeaturedComic = (featuredComic) => {
+    return {
+        type: 'ADD_FEATURED_COMIC';
+        featuredComic
+    }
+}
+
 // asynchronous action creators
 export const getComics = () => {
 
