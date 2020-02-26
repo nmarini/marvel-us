@@ -5,7 +5,6 @@ import './App.css';
 import { getComics } from './actions/comics.js';
 import NavBar from './components/NavBar.js';
 import HomePage from './components/HomePage.js';
-import UserProfile from './components/UserProfile.js';
 
 class App extends Component {
 
@@ -49,7 +48,6 @@ class App extends Component {
                 <div>
                   <Route exact path='/' component={HomePage} />
                   {/* <Route exact path='/userProfile' render={() => (<UserProfile key={this.props.currentUser.doctors.length} />)} /> */}
-                  <Route exact path='/userProfile' component={UserProfile}/>
                 </div>
                 :
                 <div>
