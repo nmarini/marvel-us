@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComics, addFeaturedComic } from '../actions/comics.js';
+import { addFeaturedComic } from '../actions/comics.js';
 
 class HomePage extends Component {
 
@@ -9,11 +9,6 @@ class HomePage extends Component {
         this.state = {
             exposeComics: false
         }
-    }
-
-
-    componentDidMount() {
-        this.props.getComics()
     }
 
     handleButton = () => {
@@ -61,4 +56,4 @@ const mapStateToProps = ({ comics }) => {
     }
 }
 
-export default connect(mapStateToProps, { getComics, addFeaturedComic })(HomePage);
+export default connect(mapStateToProps, { addFeaturedComic })(HomePage);

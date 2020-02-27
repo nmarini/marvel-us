@@ -11,6 +11,9 @@ import { getComics} from './actions/comics.js';
 
 class App extends Component {
 
+  componentDidMount() {
+    this.props.getComics()
+  }
 
   routeCases = () => {
 

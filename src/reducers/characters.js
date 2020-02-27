@@ -1,9 +1,9 @@
-const characters = (state = { characters: null, featuredCharacter: null }, action) => {
+const characters = (state = { list: null, featuredCharacter: null }, action) => {
     switch (action.type) {
         case 'ADD_CHARACTERS':
-            return { characters: action.characters, featuredCharacter: state.featuredCharacter }
+            return { list: action.characters, featuredCharacter: state.featuredCharacter }
         case 'ADD_FEATURED_CHARACTER':
-            return { characters: state.characters, featuredCharacter: action.featuredCharacter }
+            return { list: state.characters, featuredCharacter: action.featuredCharacter }
         default:
             return state
     }
