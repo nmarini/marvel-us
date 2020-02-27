@@ -17,7 +17,7 @@ export const saveComic = (currentUser, comic) => {
 
 export const addFeaturedComic = (featuredComic) => {
     return {
-        type: 'ADD_FEATURED_COMIC';
+        type: 'ADD_FEATURED_COMIC',
         featuredComic
     }
 }

@@ -1,12 +1,12 @@
-import React from '/.react'
+import React from 'react';
 
 const CharacterCard = ({ character }) => {
 
     return (
         <>
-
-            <h1>{character.name}</h1>
-            Bio:{character.bio ? <p>{character.bio}</p> : "Sorry...no descriptionn available"}
+            CharacterCard
+            {/* <h1>{character.name}</h1>
+            Bio:{character.bio ? <p>{character.bio}</p> : "Sorry...no descriptionn available"} */}
         </>
     )
 }

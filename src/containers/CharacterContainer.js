@@ -1,4 +1,4 @@
-import React, { Component } from './react';
+import React, { Component } from 'react';
 import CharacterCard from './component/CharacterCard.js';
 
 class CharacterContainer extends Component {

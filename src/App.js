@@ -1,66 +1,51 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import { getComics } from './actions/comics.js';
+import { connect } from 'react-redux';
 import NavBar from './components/NavBar.js';
 import HomePage from './components/HomePage.js';
+import CharacterCard from './components/CharacterCard.js';
+import ComicCard from './components/ComicCard.js';
+import { getComics} from './actions/comics.js';
+
 
 class App extends Component {
 
-  constructor() {
-    super()
-    this.state = {
-      exposeComics: false
+
+  routeCases = () => {
+
+    switch (this.props.comic.featuredComic) {
+      case !null:
+        return this.props.comic.featuredComic ? 
+          <Route exact path={'/comicCard' + this.props.featuredComic.id} component={ComicCard} /> 
+            : <Route exact path={'/character' + this.props.featuredCharacter.id} component={CharacterCard} />
+      case null:
+        return <Route exact path='/' component={HomePage} />;
+      default:
+        break;
     }
+
+    return (
+      <div>
+
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/characterCard' component={CharacterCard} />
+        <Route exact path='/comicCard' component={ComicCard} />
+
+        {/* <Route exact path='/userProfile' render={() => (<UserProfile key={this.props.currentUser.doctors.length} />)} /> */}
+      </div>
+    )
+
   }
-
-
-  componentDidMount() {
-    this.props.getComics()
-  }
-
-  handleButton = () => {
-    this.setState({
-      exposeComics: !this.state.exposeComics
-    })
-  }
-
-  comicsList = () => (
-    this.props.comics.map(comic => (
-      <li key={comic.id}>{comic.title}</li>
-    ))
-  )
 
   render() {
     return (
       <Router>
       <div className="App-wrapper">
         <div className="App">
-          <img src="https://res.cloudinary.com/teepublic/image/private/s--AeDFhM2w--/t_Resized%20Artwork/c_fit,g_north_west,h_954,w_954/co_5e366e,e_outline:48/co_5e366e,e_outline:inner_fill:48/co_ffffff,e_outline:48/co_ffffff,e_outline:inner_fill:48/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/t_Watermark/c_limit,f_jpg,h_630,q_90,w_630/v1475614509/production/designs/713761_1.jpg" className="App-logo" alt="logo" />
-          <div>
-            {/* First Introduction of Application */}
-            <h1>Marvel Us</h1>
-            <em>Bringing Marvel Comics to You, Me, and Everyone We Know</em>
-              <NavBar />
-
-              {this.props.currentUser ?
-                <div>
-                  <Route exact path='/' component={HomePage} />
-                  {/* <Route exact path='/userProfile' render={() => (<UserProfile key={this.props.currentUser.doctors.length} />)} /> */}
-                </div>
-                :
-                <div>
-                  <Route exact path='/' component={HomePage} />
-                </div>}
-
-
-          </div>
-          <div>
-            <button onClick={this.handleButton}>{this.state.exposeComics ? `Hide` : `Reveal`} Comics</button>
-            {this.state.exposeComics && this.props.comics ? <ol>{this.comicsList()}</ol> : null }
-          </div>
-
+            <NavBar />
+              {/* {this.routeCases()} */}
+              {console.log(this.props)}
         </div>
       </div>
       </Router>
@@ -69,7 +54,7 @@ class App extends Component {
   
 }
 
-const mapStateToProps = ({comics}) => {
+const mapStateToProps = ({ comics }) => {
   return {
     comics
   }
