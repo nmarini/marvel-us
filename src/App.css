@@ -29,6 +29,20 @@
   color: #61dafb;
 }
 
+.route-container {
+  padding: 2.5%;
+}
+
+.nav-container {
+  padding: 2.5%;
+}
+
+.nav-button {
+  border-radius: 25%;
+  background-color: blue;
+  font-size: 100%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

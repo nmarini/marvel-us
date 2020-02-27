@@ -44,14 +44,14 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
       <div className="App-wrapper">
         <div className="App">
-            <NavBar />
-              {this.routeCases()}
+          <Router>
+            <div className="nav-container"><NavBar /></div>
+            <div className="route-container">{this.routeCases()}</div>
+          </Router>
         </div>
-      </div>
-      </Router>
+      </div >
     )
   }
   
