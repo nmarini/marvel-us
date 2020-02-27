@@ -17,11 +17,12 @@ class App extends Component {
 
   routeCases = () => {
 
-    switch (this.props.comic.featuredComic) {
+    switch (this.props.comics.featuredComic) {
       case !null:
-        return this.props.comic.featuredComic ? 
-          <Route exact path={'/comicCard' + this.props.featuredComic.id} component={ComicCard} /> 
-            : <Route exact path={'/character' + this.props.featuredCharacter.id} component={CharacterCard} />
+        return this.props.comics.featuredComic ? 
+            <Route exact path={'/comicCard' + this.props.comics.featuredComic.id} component={ComicCard} />
+          :
+            <Route exact path={'/character' + this.props.characters.featuredCharacter.id} component={CharacterCard} />;
       case null:
         return <Route exact path='/' component={HomePage} />;
       default:
@@ -47,8 +48,7 @@ class App extends Component {
       <div className="App-wrapper">
         <div className="App">
             <NavBar />
-              {/* {this.routeCases()} */}
-              {console.log(this.props)}
+              {this.routeCases()}
         </div>
       </div>
       </Router>
@@ -57,9 +57,10 @@ class App extends Component {
   
 }
 
-const mapStateToProps = ({ comics }) => {
+const mapStateToProps = ({ comics, characters }) => {
   return {
-    comics
+    comics,
+    characters
   }
 }
 

@@ -19,12 +19,12 @@ class HomePage extends Component {
 
     handleClick = (event) => {
         let id = event.target.value;
-        let featuredComic = this.props.comics.find(comic => comic.id === id)
+        let featuredComic = this.props.comics.list.find(comic => comic.id === id)
         this.props.addFeaturedComic(featuredComic)
     }
 
     comicsList = () => (
-        this.props.comics.map(comic => (
+        this.props.comics.list.map(comic => (
             <li key={comic.id}>{comic.title}</li>
         ))
     )
@@ -41,7 +41,7 @@ class HomePage extends Component {
                     </div>
                     <div>
                         <button onClick={this.handleButton}>{this.state.exposeComics ? `Hide` : `Reveal`} Comics</button>
-                        {this.state.exposeComics && this.props.comics ? <ol>{this.comicsList()}</ol> : null} 
+                        {this.state.exposeComics && this.props.comics.list ? <ol>{this.comicsList()}</ol> : null} 
                     </div>
 
                 </div>
@@ -52,7 +52,7 @@ class HomePage extends Component {
 
 const mapStateToProps = ({ comics }) => {
     return {
-        comics: comics.comics
+        comics
     }
 }
 
