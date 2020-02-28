@@ -22,6 +22,12 @@ export const addFeaturedComic = (featuredComic) => {
     }
 }
 
+export const removeFeaturedComic = () => {
+    return {
+        type: 'REMOVE_FEATURED_COMIC'
+    }
+}
+
 // asynchronous action creators
 export const getComics = () => {
 

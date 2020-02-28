@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CharacterCard from './component/CharacterCard.js';
+import CharacterCard from '../components/CharacterCard.js';
 
 class CharacterContainer extends Component {
 

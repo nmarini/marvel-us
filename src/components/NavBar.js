@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 
 
 
-const NavBar = ({ currentUser }) => {
+const NavBar = ({ currentUser, handleClick }) => {
 
     return (
         <div className="NavBar">
             <div className="NavRow">
-                <div className="NavColumn"><NavLink to='/'><button className="nav-button">Home Page</button></NavLink></div>
+                <div className="NavColumn"><NavLink to='/'><button className="nav-button" onClick={handleClick}>Home Page</button></NavLink></div>
                 
                 {/* <div className="NavColumn"><NavLink to='/doctorList'><button className="nav-button" >Doctor List</button></NavLink></div> */}
             </div>

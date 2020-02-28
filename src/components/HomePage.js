@@ -18,14 +18,15 @@ class HomePage extends Component {
     }
 
     handleClick = (event) => {
-        let id = event.target.value;
+        let id = parseInt(event.target.getAttribute('data-id'));
         let featuredComic = this.props.comics.list.find(comic => comic.id === id)
         this.props.addFeaturedComic(featuredComic)
+        this.props.history.push('/comic' + id)
     }
 
     comicsList = () => (
         this.props.comics.list.map(comic => (
-            <li key={comic.id}>{comic.title}</li>
+            <li key={comic.id} data-id={comic.id} onClick={this.handleClick}>{comic.title}</li>        
         ))
     )
 

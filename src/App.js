@@ -4,9 +4,9 @@ import './App.css';
 import { connect } from 'react-redux';
 import NavBar from './components/NavBar.js';
 import HomePage from './components/HomePage.js';
-import CharacterCard from './components/CharacterCard.js';
-import ComicCard from './components/ComicCard.js';
-import { getComics} from './actions/comics.js';
+import CharacterContainer from './containers/CharacterContainer.js';
+import ComicContainer from './containers/ComicContainer.js';
+import { getComics, removeFeaturedComic} from './actions/comics.js';
 
 
 class App extends Component {
@@ -15,31 +15,22 @@ class App extends Component {
     this.props.getComics()
   }
 
+  handleHomePageClick = () => {
+    this.props.removeFeaturedComic();
+  }
+
   routeCases = () => {
 
-    switch (this.props.comics.featuredComic) {
-      case !null:
-        return this.props.comics.featuredComic ? 
-            <Route exact path={'/comicCard' + this.props.comics.featuredComic.id} component={ComicCard} />
-          :
-            <Route exact path={'/character' + this.props.characters.featuredCharacter.id} component={CharacterCard} />;
-      case null:
-        return <Route exact path='/' component={HomePage} />;
-      default:
-        break;
+    if (this.props.comics.featuredComic || this.props.characters.featuredCharacter) {
+      if (this.props.comics.featuredComic) {
+        // return <Route exact path={'/comic' + this.props.comics.featuredComic.id} component={ComicContainer} />
+        return <Route exact path='/comic' component={ComicContainer} />
+      } else {
+        return <Route exact path={'/character' + this.props.characters.featuredCharacter.id} component={CharacterContainer} />
+      }
+    } else {
+      return <Route exact path='/' component={HomePage} />
     }
-
-    return (
-      <div>
-
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/characterCard' component={CharacterCard} />
-        <Route exact path='/comicCard' component={ComicCard} />
-
-        {/* <Route exact path='/userProfile' render={() => (<UserProfile key={this.props.currentUser.doctors.length} />)} /> */}
-      </div>
-    )
-
   }
 
   render() {
@@ -47,8 +38,14 @@ class App extends Component {
       <div className="App-wrapper">
         <div className="App">
           <Router>
-            <div className="nav-container"><NavBar /></div>
-            <div className="route-container">{this.routeCases()}</div>
+            <div className="nav-container"><NavBar handleClick={this.handleHomePageClick}/></div>
+            <div className="route-container">
+              <Route exact path='/' component={HomePage} />
+              {this.props.comics.featuredComic ? <Route exact path={'/comic' + this.props.comics.featuredComic.id} component={ComicContainer} /> : null}
+              {this.props.characters.featuredCharacter ? <Route exact path={'/character' + this.props.characters.featuredCharacter.id} component={CharacterContainer} /> : null}
+              {/* {this.routeCases()} */}
+              
+              </div>
           </Router>
         </div>
       </div >
@@ -64,4 +61,4 @@ const mapStateToProps = ({ comics, characters }) => {
   }
 }
 
-export default connect(mapStateToProps, { getComics })(App);
+export default connect(mapStateToProps, { getComics, removeFeaturedComic })(App);
